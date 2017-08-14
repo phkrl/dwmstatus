@@ -112,7 +112,7 @@ getmemory(void)
 		}
 		if(count==0)
 			memtotal=atoi(buf);
-		else if(count==1)
+		else if(count==2)
 			memfree=atoi(buf);
 		else if(count==14)
 			swaptotal=atoi(buf);
@@ -127,7 +127,7 @@ getmemory(void)
 	mem=100*(double)(memtotal-memfree)/memtotal;
 	swap=100*(double)(swaptotal-swapfree)/swaptotal;
 	fclose(info);
-	return smprintf("mem: %4.1f%% swap: %4.1f%%", mem, swap);
+	return smprintf("mem: %.1f%% swap: %.1f%%", mem, swap);
 }
 
 char *
