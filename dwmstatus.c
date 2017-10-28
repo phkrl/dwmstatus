@@ -137,8 +137,7 @@ temperature(void)
 	for (short i=0;i<8;i++)
     {
         char *add;
-        add=(char *)malloc(30*sizeof(char));
-        sprintf(add,"/sys/class/thermal/thermal_zone%d/temp",i);
+        add=smprintf("/sys/class/thermal/thermal_zone%d/temp",i);
         FILE *f=fopen(add,"r");
         int t;
         fscanf(f,"%d",&t);
@@ -177,10 +176,9 @@ main(void)
 		fprintf(stderr, "dwmstatus: cannot open display.\n");
 		return 1;
 	}
-
 	for (;;sleep(1)) {
 		avgs = loadavg();
-		tmar = mktimes("%H:%M:%S", tzmoscow);
+		tmar = mktimes("%D %H:%M:%S", tzmoscow);
 		swapmem = getmemory();
 		temp = temperature();
 		battery = power();
